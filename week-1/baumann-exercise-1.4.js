@@ -17,6 +17,7 @@ Expected output:
    Car added to the racetrack!
    Truck added to the racetrack!
    Jeep added to the racetrack!
+   
    -- The following vehicles have been added to the racetrack --
    Truck: Celica
    Car: F150
