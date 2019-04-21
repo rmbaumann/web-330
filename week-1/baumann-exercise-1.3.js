@@ -11,8 +11,12 @@
 /*
 Expected output:
   Reva Baumann
-  Assignment 5.4
-  10 March 2019
+  Exercise 1.3
+  21 April 2019
+  Manufacturer: Apple
+  Model: iPhone XR
+  Color: Yellow
+  Price: $99
 
   
 */
@@ -23,28 +27,40 @@ console.log(header.display("Reva", "Baumann", "Exercise 1.3"));
 
 // Start Program
 
-function Cellphone (manufacturer) {
-    this.manufacturer = Apple;
-    this.model = "XR";
-    this.color = "Yellow";
-    this.price = $99;
+// Declare an instance of the Cell Phone
+let myPhone = new CellPhone("Apple", "iPhone XR", "Yellow", "$99")
 
-    this.getDetails = function() {
-        return (
-            this.manufacturer + 
-            " Apple" +
-            this.model + 
-            " Model" +
-            this.color +
-            "yellow" + 
-            this.price +
-            "99"
-        )
-    }
-    
+function CellPhone(manufacturer, model, color, price)
+{
+    this.manufacturer = Manufacturer;
+    this.model = model;
+    this.color = color;
+    this.price = price;
+}
+/* Return the function of price */
+this.getPrice = function ()
+{
+    return this.price;
 }
 
-const phone = new Phone(99);
+/* Return the model of the cellphone */
+this.getModel = function ()
+{
+    return this.model;
+}
+
+/* Return Manufacturer */
+this.getDetails = function ()
+{
+    return "Manufacturer: " + this.manufacturer + "\nModel: " + this.getModel() + "\nColor: " + this.color + "\nPrice: " + this.getPrice();
+}
+
+}
 
 
-console.log(Cellphone.getDetails)
+var cellPhone = new CellPhone("Apple", "iPhone XR", "Yellow", "99.99");
+
+//output
+console.log(cellPhone.getDetails())
+
+// end program
