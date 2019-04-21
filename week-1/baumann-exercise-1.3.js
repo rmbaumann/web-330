@@ -4,7 +4,7 @@
 ; Author: Reva Baumann
 ; Date: 18 April 2019
 ; Modified by: Reva Baumann
-; Description: Create a list about cell phones with varying properties
+; Description: Create details about a cellphone
 ;============================================
 */
 
@@ -16,9 +16,7 @@ Expected output:
   Manufacturer: Apple
   Model: iPhone XR
   Color: Yellow
-  Price: $99
-
-  
+  Price: $99 
 */
 
 // lists details of formatted header, including first name, last name and assignment
@@ -30,6 +28,7 @@ console.log(header.display("Reva", "Baumann", "Exercise 1.3"));
 // Declare an instance of the Cell Phone
 let myPhone = new CellPhone("Apple", "iPhone XR", "Yellow", "$99")
 
+// Display details of Cellphone
 function CellPhone(manufacturer, model, color, price)
 {
     this.manufacturer = Manufacturer;
@@ -54,10 +53,9 @@ this.getDetails = function ()
 {
     return "Manufacturer: " + this.manufacturer + "\nModel: " + this.getModel() + "\nColor: " + this.color + "\nPrice: " + this.getPrice();
 }
-
 }
 
-
+// Show details of cellphone information
 var cellPhone = new CellPhone("Apple", "iPhone XR", "Yellow", "99.99");
 
 //output
