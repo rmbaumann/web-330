@@ -23,6 +23,7 @@ Expected output:
 
 // Start Program
 
+// Call getAge to create return age of person
 var person = {
   getAge: function ()
   {
@@ -30,6 +31,7 @@ var person = {
   }
 };
 
+// Create Object.create to make instance of person with values
 var diana = Object.create(person, {
   "age":
   {
@@ -41,7 +43,11 @@ var diana = Object.create(person, {
   }
 });
 
+// Getage function to assign
 diana.getAge();
 
+// Output
 console.log("The person's full name is: '%s'", diana.fullname);
 console.log("The person's age is '%s'", diana.age);
+
+//end program
