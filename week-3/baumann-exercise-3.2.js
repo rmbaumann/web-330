@@ -4,7 +4,7 @@
 ; Author: Reva Baumann
 ; Date: 06 May 2019
 ; Modified by: Reva Baumann
-; Description: EJS Views Example
+; Description: Use factory pattern to create pattern with the notion of objects
 ;============================================
 */
 
@@ -35,8 +35,6 @@ Expected output:
 const header = require('./baumann-header.js');
 console.log(header.display("Reva", "Baumann", "Exercise 3.2"));
 console.log("") // Line Break
-
-// Start Program
 
 // Declare properties for the class that will function as usernames, passwords, servers, version
 function Postgres(properties) {
