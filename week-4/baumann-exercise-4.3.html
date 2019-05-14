@@ -17,16 +17,20 @@
 
     <script>
 
+      //jQuery function
     $(function() {
 
+      // jQuery selector to set the click event of your button
       $("#delete1").click(function() {
 
+        // ajax delete, set data
         $.ajax({
             url: 'http://httpbin.org/delete',
             datatype: 'json',
             type: 'DELETE',
-            data: { username: 'admin', password: 'secret', email: 'as@me.com'},
+            data: { username: "Reva Baumann", password: "WonderWoman", assignment: "Exercise 4.3", email: "rmbaumann@my365.bellevue.edu"},
             success: function(data, status) {
+                // call console.log to output the data
                 console.log('Username: ' + data.form.username + '\nPassword: ' + data.form.password + '\nEmail: ' + data.form.email + '\nStatus: ' + status);
             }
         })
