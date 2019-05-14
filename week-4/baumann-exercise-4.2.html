@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>Exercise 4.2 - GET and POST Operations</title>
 
     <!-- jQuery Reference -->
-    <script src="https://ajax.googleapis.com/ajax/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
-
   <body>
-    <h4>HTTP GET Request</h4>
 
+    <h4>HTTP GET Request</h4>
+    <!-- Create Button to generate breed randomizer -->
     <button id="get1">Get Random Breed</button>
 
     <script>
+
+      // Assign #get1 as function
       $(function() {
 
         $("#get1").click(function() {
 
+          // Use GET function to randomize breed image and log response
           $.get('https://dog.ceo/api/breeds/image/random', function(data, status) {
-            console.log('Data: ' + JSON.stringify(data) + '\nStatus: ' + status)
+            // Call the console.log function to output the data to console
+            console.log('Data: ' + JSON.stringify(data) + '\nStatus: ' + status);
 
-          });
+          })
 
         });
 
