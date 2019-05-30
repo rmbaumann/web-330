@@ -69,14 +69,15 @@
 
     </div>
 
+    <!-- use personViewModel to declare details of the person -->
     <script>
-        var personViewModel = {
-            firstName: "Abraham",
-            lastName: "Lincoln",
-            email: "alincoln@domain.net",
-        };
+        function PersonViewModel() {
+            this.firstName = ko.observable("Abraham");
+            this.lastName = ko.observable("Lincoln");
+            this.email = ko.observable("alincoln@domain.net");
+        }
 
-        ko.applyBindings(personViewModel);
+        ko.applyBindings(new PersonViewModel());
     </script>
   </body>
 </html>
