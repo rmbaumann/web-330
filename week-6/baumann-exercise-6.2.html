@@ -42,19 +42,17 @@
 
       <h2>Person View Model</h2>
 
-      <!--First Name Group-->
+      <!-- Details of the individual using form-group -->
       <div class="form-group">
         <label for="txtFirstName">First Name:</label>
         <input type="text" class="form-control alert-warning" data-bind="value: firstName" id="txtFirstName">
       </div>
 
-      <!--Last Name Group-->
       <div class="form-group">
         <label for="txtLastName">Last Name:</label>
         <input type="text" class="form-control alert-warning" data-bind="value: lastName" id="txtLastName">
       </div>
 
-      <!--Email Group-->
       <div class="form-group">
         <label for="txtEmail">Email:</label>
         <input type="text" class="form-control alert-warning" data-bind="value: email" id="txtEmail">
@@ -62,13 +60,13 @@
     </div>
 
     <script>
-      // Creates the knockout observables.
+      // Creates the knockout observables, using names and email
       function PersonViewModel () {
         this.firstName = ko.observable("Abraham");
         this.lastName = ko.observable("Lincoln");
         this.email = ko.observable("alincoln@domain.com");
       }
-      // Calls the PersonViewModel Function.
+      // Calls the fuction
       ko.applyBindings(new PersonViewModel());
     </script>
   </body>
