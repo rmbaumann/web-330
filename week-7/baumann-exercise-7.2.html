@@ -1,0 +1,73 @@
+<!--
+============================================
+; Title: Exercise 7.2
+; Author: Reva Baumann
+; Date: 02 June 2019
+; Modified By: Reva Baumann
+; Description: The "if" Binding
+;===========================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+
+        <title>Exercise 7.2</title>
+
+        <!-- include the bootstrap css -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div role="main" class="container">
+            <br /><br />
+            <h1>Exerecise 7.2</h1>
+            <div class="row">
+                <div class="form-group col-4 offset-2">
+                    <!-- Data Bind to display details of name-->
+                    <input type="text" id="txtLastName" class="form-control" data-bind="value: lastName"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" data-bind="if:lastName">
+            <div class="col-4 offset-4">
+                <h2><span id="fullNameOutput" data-bind="text: displayFullName" class="alert-success"></span></h2>
+            </div>
+        </div>
+
+        <!-- jquery, popper and the bootstrap javascript files to support the use of the bootstrap framework -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+        <script src="../knockout-3.5.0"></script>
+
+        <!-- JavaScript Details -->
+        <script>
+            function PersonViewModel() {
+                //Declare first and last name 
+                this.firstName = ko.observable();
+                this.lastName = ko.observable();
+
+                // Computed Observable that returns firstName
+                this.displayLastName = ko.pureComputed(function() {
+                    return this.firstName();
+                }, this);
+
+                // Computed Observable using both irst and last name
+                this.displayFullName = ko.pureComputed(function() {
+                    return '${this.firstName()} ${this.lastName()';
+                }, this);
+            }
+
+            $(function() {
+                ko.applyBindings(new PersonViewModel());
+                $("#txtFirstName").focus().select();
+            });
+        
+        </script>
+    </body>
+</html>
