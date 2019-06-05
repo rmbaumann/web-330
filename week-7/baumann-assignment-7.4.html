@@ -1,10 +1,10 @@
 <!--
 ============================================
-; Title: Assignment 7.3
+; Title: Assignment 7.4
 ; Author: Reva Baumann
 ; Date: 02 June 2019
 ; Modified By: Reva Baumann
-; Description: Other Bindings
+; Description: JavaScript Tutorials
 ;===========================================
 -->
 
@@ -16,28 +16,43 @@
 
         <title>Assignment 7.4</title>
 
-        <!-- Bootstrap cSS-->
+        <!-- Bootstrap css-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <!-- JavaScript Libraries -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
     </head>
 
+    <!-- Styling and appearance -->
+    <style>
+            body {
+                font-family:'Courier New', Courier, monospace;
+                font-weight: 200;
+            }
+
+            tr:hover {
+                background-color:darkgray;
+            }
+    </style>
+
+    <!-- Content of page -->
     <body>
         <div role="main" class="container">
-            <br />
+            <br/>
             <h2>Assignment 7.4</h2>
-            <table class="table table-striped">
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Link</th>
-                </tr>
+            <table class="table table-light table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <!-- bind the body of text books to rows -->
                 <tbody data-bind="foreach: tutorials">
                     <tr>
-                        <td data-bind="text: title">
-                        </td>
+                        <td data-bind="text: title"></td>
                         <td data-bind="text: description"></td>
-                        <td><a data-bind="attr: {href: link} target="blank">Tutorial Link</a></td>
+                        <td><a data-bind="text:link, attr: {href: link, title: link}" target="_blank">Tutorials</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -47,24 +62,27 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <!-- include the Knockoutjs library -->
+        <!-- Knockoutjs library -->
         <script src="../knockout-3.5.0.js"></script>
 
         <script>
             // List Text Books to bind
-            function TutorialViewModel() {
-                this.tutorials = ko.observableArray([
-                    { title: "Tutorial 1", description: "description1", link: "https://www.google.com/"},
-                    { title: "Tutorial2", description: "description2", link: "https://www.google.com/"},
-                    { title: "Tutorial3", description: "description3", link: "https://www.google.com/"},
-                    { title: "Tutorial4", description: "description4", link: "https://www.google.com/"},
-                    { title: "Tutorial4", description: "description5", link: "https://www.google.com/"},
-
-                ]);
+            var tutorialList = [
+                    {id: 1, title: "JavaScript Tutorial", description: "JavaScript Basic to Advanced Tutorial", link: "https://www.w3schools.com/js/"},
+                    {id: 2, title: "Learn JavaScript: Conditionals", description: "Learn how to use if, else if, else, switch and ternary syntax", link: "https://www.codecademy.com/learn/introduction-to-javascript/modules/learn-javascript-control-flow/"},
+                    {id: 3, title: "onClick Event", description: "Execute a JavaScript when a button is disabled", link: "https://www.w3schools.com/jsref/event_onclick.asp/"},
+                    {id: 4, title: "JavaScript Events", description: "JavaScript react to events", link: "https://www.w3schools.com/js/js_events.asp/"},
+                    {id: 5, title: "Bootstrap 4", description: "What is Bootstrap 4? The popular framework", link: "https://www.w3schools.com/bootstrap4/default.asp/"},
+                ]
+                
+            // execute JavaScript observable array
+            function JavaScriptTutorialViewModel(){
+                this.tutorials = ko.observableArray(tutorialList);
             }
 
-            // Bindings
-            ko.applyBindings(new TutorialViewModel());
+            $(function(){
+                ko.applyBindings(new JavaScriptTutorialViewModel());
+            }); 
         </script>
     </body>
 </html>
