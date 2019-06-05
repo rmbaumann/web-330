@@ -12,7 +12,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, intial-scale=1, shrink-to-fit=no">
 
         <title>Exercise 7.2</title>
 
@@ -20,13 +20,20 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
 
+    <style>
+        html{
+            font-size: 16px;
+        }
+
+    </style>
+
     <body>
         <!-- Exercise detials of First and Last Name -->
         <div role="main" class="container">
             <br />
             <h1>Exerecise 7.2</h1>
             <div class="row">
-                <div class="form-group col-4 offset-2">
+                <div class="form-group col-4 offset-2" data-bind="if: displayFirstName">
                     <label for="txtFirstName">First Name</label>
                     <input type="text" id="txtFirstName" class="form-control" data-bind="value: firstName"/>
                 </div>
