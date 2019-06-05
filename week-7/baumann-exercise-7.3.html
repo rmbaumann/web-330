@@ -18,22 +18,22 @@
         <!-- Include Bootstrap Source -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
-
+    <!-- Details on the table, titles of tables-->
     <body>
         <div role="main" class="container">
             <h1>Exercise 7.3</h1>
-            <table class="table table-dark table-striped table-hover">
+            <table class="table table-dark">
                 <thead>
                     <tr>
                         <th>Textbook List</th>
-                        <th class="text-right">Cost</th>
+                        <th class="text-right">Price</th>
                     </tr>
                 </thead>
 
                 <tbody data-bind="foreach:textBooks">
                     <tr>
                         <td data-bind="text: title"></td>
-                        <td class="text-right" data-bind="text: "$" + price"></td>
+                        <td class="text-right" data-bind="text: '$'' + price`"></td>
                     </tr>
                 </tbody>
             </table>
@@ -48,23 +48,19 @@
 
 <script>
     // Textbook Details
-    var textBookList = [
-        {id: 1, title: "Text Book 1", price: 9.99},
-        {id: 2, title: "Text Book 2", price: 19.99},
-        {id: 3, title: "Text Book 3", price: 29.99},
-        {id: 4, title: "Text Book 4", price: 39.99},
-        {id: 5, title: "Text Book 5", price: 49.99}
-    ];
-
-    // Text Book View Model
-    function TextBookViewModel(){
-        this.textBooks = ko.observableArray(textBookList);
-    }
+    function textBookList() {
+        this.textBooks = ko.observableArray([
+        {id: 1, title: "Mathematics", price: 9.99 },
+        {id: 2, title: "Art History", price: 19.99 },
+        {id: 3, title: "Computer Science", price: 29.99 },
+        {id: 4, title: "Biology", price: 39.99  },
+        {id: 5, title: "Philosophy", price: 49.99 }
+    ]);
+}
 
     // Fuction to create list
-    $(function(){
-        ko.applyBindings(new TextBookViewModel());
-    });
+
+    ko.applyBindings(new textBookList)
 </script>
 </body>
 </html>
