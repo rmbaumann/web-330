@@ -21,13 +21,25 @@
     </head>
 
     <body>
+        <!-- Exercise detials of First and Last Name -->
         <div role="main" class="container">
-            <br /><br />
+            <br />
             <h1>Exerecise 7.2</h1>
             <div class="row">
                 <div class="form-group col-4 offset-2">
-                    <!-- Data Bind to display details of name-->
-                    <input type="text" id="txtLastName" class="form-control" data-bind="value: lastName"/>
+                    <label for="txtFirstName">First Name</label>
+                    <input type="text" id="txtFirstName" class="form-control" data-bind="value: firstName"/>
+                </div>
+            </div>
+
+            <div class="form-group col-4" data-bind="if: displayLastName">
+                <label for="txtLastName">Last Name</label>
+                <input type="text" id="txtLastName" class="form-control" data-bind="value: lastName"/>
+            </div>
+
+            <div class="row" data-bind="if:lastName">
+                <div class="col-4 offset-4">
+                    <h2><span id="fullNameOutput" data-bind="text: displayFullName" class="alert-success"></span></h2>
                 </div>
             </div>
         </div>
@@ -47,19 +59,19 @@
 
         <!-- JavaScript Details -->
         <script>
-            function PersonViewModel() {
-                //Declare first and last name 
+            function PersonViewModel(){
+                // Declare first and last name 
                 this.firstName = ko.observable();
                 this.lastName = ko.observable();
 
                 // Computed Observable that returns firstName
-                this.displayLastName = ko.pureComputed(function() {
+                this.displayLastName = ko.pureComputed(function(){
                     return this.firstName();
                 }, this);
 
-                // Computed Observable using both irst and last name
-                this.displayFullName = ko.pureComputed(function() {
-                    return '${this.firstName()} ${this.lastName()';
+                // Computed Observable using both first and last name
+                this.displayFullName = ko.pureComputed(function(){
+                    return "${this.firstName()} ${this.lastName()}";
                 }, this);
             }
 
