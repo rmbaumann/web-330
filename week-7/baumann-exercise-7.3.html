@@ -18,49 +18,60 @@
         <!-- Include Bootstrap Source -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
+
+    <style>
+        html{
+            font-size: 16px;
+        }
+    </style>
+
     <!-- Details on the table, titles of tables-->
     <body>
         <div role="main" class="container">
             <h1>Exercise 7.3</h1>
-            <table class="table table-dark">
+            <table class="table table-dark table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Textbook List</th>
+                        <th>Title</th>
                         <th class="text-right">Price</th>
                     </tr>
                 </thead>
-
+                
+                <!-- Bind text book data -->
                 <tbody data-bind="foreach:textBooks">
                     <tr>
                         <td data-bind="text: title"></td>
-                        <td class="text-right" data-bind="text: '$'' + price`"></td>
+                        <td class="text-right" data-bind="text: '$' + price"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-<!-- include the jquery, popper and the bootstrap javascript -->
+<!-- include the jquery, popper, bootstrap javascript, knockout -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<!-- include the Knockoutjs library -->
 <script src="../knockout-3.5.0.js"></script>
 
 <script>
+
     // Textbook Details
-    function textBookList() {
-        this.textBooks = ko.observableArray([
+    var textBookList = [
         {id: 1, title: "Mathematics", price: 9.99 },
         {id: 2, title: "Art History", price: 19.99 },
         {id: 3, title: "Computer Science", price: 29.99 },
         {id: 4, title: "Biology", price: 39.99  },
         {id: 5, title: "Philosophy", price: 49.99 }
-    ]);
-}
+    ];
 
     // Fuction to create list
+    function TextBookViewModel(){
+        this.textBooks = ko.observableArray(textBooksList);
+    }
 
-    ko.applyBindings(new textBookList)
+    $(function(){
+        ko.applyBindings(new TextBookViewModel());
+    });
 </script>
 </body>
 </html>
