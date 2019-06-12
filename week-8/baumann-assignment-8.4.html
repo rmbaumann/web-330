@@ -1,0 +1,189 @@
+<!--
+============================================
+; Title: Assignment 8.4
+; Author: Reva Baumann
+; Date: 10 June 2019
+; Modified By: Reva Baumann
+; Description: CRUD Operations
+;===========================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Assignment 8.4</title>
+
+    <!-- Stylesheet - Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+  
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  
+    <!-- JavaScript Libraries -->
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/5DACB2B0-5003-6543-8B39-D8EE6E4FC44C/main.js" charset="UTF-8"></script>
+    <script src="../knockout-<version>.js"></script>
+
+    </head>
+
+    <body>
+        <!-- Create Container -->
+        <div role="main" class="container">
+            <br /><br />
+            <div role="row" data-bind="if:error">
+                <div class="col-sm-12">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Warning!!</strong>
+                        <span data-bind="text:error()"></span>
+                    </div>
+                </div>
+            </div>
+
+            <h2>CRUD</h2>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="card card-inverse" style="background-color: #939873">
+                        <div class="card-block p-3">
+                            <!-- Add Employee -->
+                            <h3 class="card-title">Employees <a href="#" class="btn btn-primary" data-bind="click:$root.add"><i class="fas fa-user-plus"></i>Add:</a></h3>
+                            <div class="card-text">
+                                <table class="table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee ID</th>
+                                            <th>Name</th>
+                                            <th class="text-right">Title</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody data-bind="foreach: Employees">
+                                        <tr>
+                                            <!-- Binding of Employee IDs and Namaes-->
+                                            <td data-bind="text: ID"></td>
+                                            <td data-bind="text: Name"></td>
+                                            <td class="text-right"></td>
+                                            
+                                            <!-- Edit, Remove -->
+                                            <span><a href="#" class="btn btn-success" data-bind="click: $root.edit"><i class="fas fa-pencil-alt"></i>Edit</a></span>
+                                            <span><a href="#" class="btn btn-danger" data-bind="click: $root.remove"><i class="fas fa-trash-alt"></i>Remove</a></span>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4" data-bind="if:Employee">
+                    <div class="card card-inverse" style="background-color: rgb(11, 182, 159)"></div>
+                    <div class="card-block p-3">
+                        <h3 class="card-title">Employee Details</h3>
+                        <div class="card-text">
+                            <div class="form-group" data-bind="using: Employee">
+                                <label for="txtName">Name:</label>
+
+                                <input type="text" id="txtName" data-bind="value:Name" class="form-control">
+                            </div>
+
+                            <div class="form-group float-right">
+                                <!-- Cancel, Save -->
+                                <button data-bind="click: $root.cancel" class="btn btn-group btn-danger">Cancel</button>
+                                <button data-bind="click: $root.update" class="btn btn-group btn-success">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- Include the Knockout library -->
+        <script src="../knockout-3.5.0.js"></script>
+
+        <script>
+
+            // start program 
+            
+            function Employee(id, name){
+                this.Id = id;
+                this.Name = name;
+            }
+
+            // Employee variables, declared
+            var employeeList = [
+                new Employee(1, "Diana Prince"),
+                new Employee(2, "Bruce Wayne"),
+                new Employee(3, "Clark Kent"),
+                new Employee(4, "Hal Jordan"),
+                new Employee(5, "Barbara Gordon")
+            ];
+
+            function EmployeeViewModel(){
+                var self = this;
+                
+                self.Id = ko.observable();
+                self.Name = ko.observable();
+                self.error = ko.observable();
+                self.Employee = ko.observable();
+                self.Employees = ko.observableArray(employeeList);
+
+                self.add = function(){
+                    self.Employee(new Employee(0, ""));
+                }
+
+                self.edit = function(employee){
+                    self.Employee(employee);
+                };
+
+                self.update = function() {
+                    var employee = self.Employee();
+
+                    if(!employee.Name || employee.Name === "" || employee.Name === null){
+                        self.error("Enter Name Value");
+                        return;
+                    } else{
+                        self.error("");
+                    }
+
+                    if(employee.ID === 0){
+                        var id = 0;
+
+                        ko.utils.arrayForEach(self.Employees(), function(emp){
+                            if(emp.Id > id){
+                                id = emp.Id + 1;
+                            }
+                        });
+
+                        employee.Id = ID;
+                    } else{
+                        self.Employees.remove(self.Employee());
+                    }
+
+                    self.Employees.push(employee);
+                    self.Employee(null);
+                }
+
+                self.remove = function(employee){
+                    self.Employees.remove(employee);
+                };
+
+                self.cancel = function(){
+                    self.error("");
+                    self.Employee(null);
+                };
+            }
+
+            $(function(){
+                ko.applyBindings(new PayrollViewModel())
+            });
+
+            //end program
+        
+        </script>
+    </body>
+</html>
