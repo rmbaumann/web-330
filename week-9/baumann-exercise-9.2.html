@@ -10,102 +10,86 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8">
     <title>Assignment 9.2</title>
 
-    <!-- Stylesheet Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
-
-  <!-- JavaScript references -->
-  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/5DACB2B0-5003-6543-8B39-D8EE6E4FC44C/main.js" charset="UTF-8"></script>
-  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
+    <!-- Stylesheet - Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
 
+<!-- Details of table -->
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
+                <a href="#" class="nav-link">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About Me</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contact Me</a>
+                <a href="#" class="nav-link">Contact Us</a>
             </li>
         </ul>
     </nav>
 
     <div role="main" class="container">
-        <br /><br />
-        <h1>Exercise 9.2 - Hello MVC</h1>
+        <h1 class="my-4">Hello MVC</h1>
         <p class="lead">Models & Collections</p>
         <div class="row">
-            <div class="col-sm-8">
-                <tbody id="table-body">
-                <table class="table table-dark">
+            <div class="col-sm-9">
+                <table class="table table-dark table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>Employee ID</th>
+                            <th>ID</th>
                             <th>Name</th>
                             <th>Salary</th>
                         </tr>
                     </thead>
-                </tbody>
+                    <tbody id="table-body"></tbody>
                 </table>
             </div>
         </div>
     </div>
 
-
+    <!-- JavaScript references -->
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
+    
     <script>
         function Employee(id, name, salary) {
             this.id = id;
             this.name = name;
             this.salary = salary;
         }
-
-        // Employee model using Backbone.Model.extend function
+        // Employee Model, Backbone
         var EmployeeModel = Backbone.Model.extend({
-            defaults: {
-                this.id = id;
-                this.name = name;
-                this.salary = salary;
+            defalts: {
+                id: "",
+                name: "",
+                salary: ""
             }
-
-            var EmployeeModel = Backbone.Model.extend({
-                defaults: {
-                    id: "",
-                    name: "",
-                    salary: "",
-                }
         });
-
-        // Declare the employee details
         var EmployeeCollection = Backbone.Collection.extend({
             model: EmployeeModel
         });
 
-        // Here's the Employees and details
-        var Employees = new EmployeeCollection();
-        Employees.add(new Employee("1", "Diana Prince", 100000));
-        Employees.add(new Employee("2", "Bruce Wayne", 5000000));
-        Employees.add(new Employee("3", "Clark Kent", 30000));
-        Employees.add(new Employee("4", "Hal Jordan", 80000));
-        Employees.add(new Employee{"5", "Arthur Curry", 90000});
+        // Add details of employees and call EmployeeCollection
+        let Employees = new EmployeeCollection();
+        Employees.add(new Employee("1", "Diana Prince - Art Historian", "$40,000"));
+        Employees.add(new Employee("2", "Bruce Wayne - Millionaire Philanthropist", "$50,000,000"));
+        Employees.add(new Employee("3", "Clark Kent - Journalist", "$30,000"));
+        Employees.add(new Employee("4", "Hal Jordan - Pilot", "$80,000"));
+        Employees.add(new Employee("5", "Barry Gordon - Scientist", "$100,000"));
         Employees.each(function(emp) {
-            #("table-body").append(
+            $("#table-body").append(
                 "<tr>" +
-                "<td>" + emp.gett("id") + "</td>" +
-                "<td>" + emp.get("name") + "</td>" + 
-                "<td>" + emp.get("salary") + "</td>"
-                "<tr>"
+                "<td>" + emp.get("id") + "</td>" +
+                "<td>" + emp.get("name") + "</td>" +
+                "<td>" + emp.get("salary") + "</td>" +
+                "</tr>"
             );
         })
-
-    
     </script>
 </body>
 </html>
